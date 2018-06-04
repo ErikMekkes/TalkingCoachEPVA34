@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>InteractiveAvatar</title>
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="TemplateData/textToSpeech.js"></script>
+    <script src="TemplateData/UnityInteraction.js"></script>
+</head>
+
+<body class="template">
+    <div class="template-wrap clear">
+        <input id="textForSpeech" onfocus="startTypingTextInput()" class="input-text" type="text" placeholder="Type something..." onblur="stopTypingTextInput()" />
+        <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
+
+        <div class="side-list tags_display">
+            <!--        <h3>Usable tags:</h3>-->
+            <ul>
+                <li> <input type='button' value='GLITCH' class="tiny tag_button" onclick="tag_clicked(this)" /></li>
+                <li> <input type='button' value='SIT' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                <li> <input type='button' value='SAD' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                <li> <input type='button' value='HAPPY' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                <li> <input type='button' value='DISGUST' class="tiny tag_button" onclick="tag_clicked(this)" /></li>
+                <li> <input type='button' value='AFRAID' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                <li> <input type='button' value='SURPRISE' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                <li> <input type='button' value='ANGRY' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+            </ul>
+        </div>
+        <div class="side-list language_display">
+            <ul>
+                <li> <input type=checkbox value="en-US" class="checkbox" onclick="toggleLanguage(this)" checked="true"/>English</li>
+                <li> <input type=checkbox value="nl-BE" class="checkbox" onclick="toggleLanguage(this)"/>Dutch</li>
+            </ul>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="left-bar">
+                <button class="tiny leftmost" onClick="changeBackground() ">Change Scene</button><button class="tiny" onClick="changeCoach()">Change Coach</button>
+            </div>
+            <div id="play_button"><button class="play" onClick="togglePlay()" id="playButton">Play</button></div>
+            <div class="right-bar"><button class="tiny" onClick="resetPosition()">Reset</button><button onClick="stopTalk()" class="tiny rightmost">Stop</button>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript'>
+        var Module = {
+            TOTAL_MEMORY: 268435456,
+            errorhandler: null, // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+            compatibilitycheck: null,
+            backgroundColor: "#80858B",
+            splashStyle: "Dark",
+            dataUrl: "Development/TestBuild.data",
+            codeUrl: "Development/UnityEngine.js",
+            asmUrl: "Development/UnityEngine.asm.js",
+            memUrl: "Development/UnityEngine.mem",
+            dynamicLibraries: ["Development/TestBuild.js"],
+        };
+    </script>
+    <script src="Development/UnityLoader.js"></script>
+
+</body>
+
+</html>

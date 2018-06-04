@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hair_Kelly_diffuse
+  m_Shader: {fileID: 4800000, guid: f342d70582ab2474baeadf4e9435e793, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 27469d80f06e19b45a38cd71434af246, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SecondTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 71b8a63656bef724f94adc507813468f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _AnisoOffset
+      second: -0.25
+    - first:
+        name: _Cutoff
+      second: 0.99
+    - first:
+        name: _Gloss
+      second: 64
+    - first:
+        name: _PrimaryShift
+      second: 0.5
+    - first:
+        name: _SpecularMultiplier
+      second: 1
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 0.08088237, g: 0.06004655, b: 0.00535251, a: 1}
+    - first:
+        name: _ColorPunk
+      second: {r: 0.11724138, g: 1, b: 0, a: 1}
+    - first:
+        name: _ColorRoots
+      second: {r: 0.33823532, g: 0.33823532, b: 0.33823532, a: 1}
+    - first:
+        name: _ColorSecondary
+      second: {r: 0.6838235, g: 0.6838235, b: 0.6838235, a: 1}
+    - first:
+        name: _ColorTips
+      second: {r: 0.5808823, g: 0.5808823, b: 0.5808823, a: 1}
+    - first:
+        name: _SpecularColor
+      second: {r: 0.85294116, g: 0.85294116, b: 0.85294116, a: 1}
