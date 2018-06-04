@@ -23,6 +23,7 @@ ExportedObj/
 *.pidb
 *.booproj
 *.svd
+*.opendb
 *.pdb
 
 # Unity3D generated meta files
@@ -42,7 +43,6 @@ InteractiveAvatar/Temp/
 InteractiveAvatar/Library/
 InteractiveAvatar/\.idea/
 InteractiveAvatar/TestBuild
-InteractiveAvatar/ProjectSettings/ProjectVersion\.txt
 *.DotSettings
 *.dll
 
