@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>InteractiveAvatar</title>
+    <title>%UNITY_WEB_NAME%</title>
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="shortcut icon" href="TemplateData/favicon.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -88,18 +88,6 @@
             </div>
         </div>
         <script type='text/javascript'>
-            var Module = {
-                TOTAL_MEMORY: 268435456,
-                errorhandler: null, // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-                compatibilitycheck: null,
-                backgroundColor: "#80858B",
-                splashStyle: "Dark",
-                dataUrl: "Development/TestBuild.data",
-                codeUrl: "Development/UnityEngine.js",
-                asmUrl: "Development/UnityEngine.asm.js",
-                memUrl: "Development/UnityEngine.mem",
-                dynamicLibraries: ["Development/TestBuild.js"],
-            };
             var slider = document.getElementById("speedSlider");
             var speedMul = document.getElementById("speedMul");
             slider.addEventListener('change', function() {
@@ -107,28 +95,16 @@
                 speedMul.textContent = value * 2;
                 SendMessage('TalkingCoach', 'setSpeed', parseFloat(slider.value));
             });
-
         </script>
+				
+				
+				
         <script src="TemplateData/UnityProgress.js"></script>
         <script src="TemplateData/textToSpeech.js"></script>
         <script src="TemplateData/InterfaceInteraction.js"></script>
         <script src="TemplateData/UnityInteraction.js"></script>
     </div>
-    <script type='text/javascript'>
-        var Module = {
-            TOTAL_MEMORY: 268435456,
-            errorhandler: null, // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-            compatibilitycheck: null,
-            backgroundColor: "#80858B",
-            splashStyle: "Dark",
-            dataUrl: "Development/TestBuild.data",
-            codeUrl: "Development/UnityEngine.js",
-            asmUrl: "Development/UnityEngine.asm.js",
-            memUrl: "Development/UnityEngine.mem",
-            dynamicLibraries: ["Development/TestBuild.js"],
-        };
-
-    </script>
+		
     <script>
         var slider = document.getElementById("speedSlider");
         var speedMul = document.getElementById("speedMul");
@@ -137,9 +113,15 @@
             speedMul.textContent = value * 2;
             SendMessage('TalkingCoach', 'SetSpeed', parseFloat(slider.value));
         });
-
     </script>
-    <script src="Development/UnityLoader.js"></script>
+    
+    <!-- Filled in during by Unity the build process: -->
+    <div class="template-wrap">
+        <div id="gameContainer" style="height:600px;width:960px"></div>
+    </div>
+    
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+    <script> var gameInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%");</script>
 </body>
 
 </html>

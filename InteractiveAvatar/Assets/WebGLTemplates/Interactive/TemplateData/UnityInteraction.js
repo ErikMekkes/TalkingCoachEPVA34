@@ -1,57 +1,59 @@
+var gameInstance = UnityLoader.instantiate("gameContainer", "Build/mybuild.json", {onProgress: UnityProgress});
+
 function startTalk() {
     var text = document.getElementById("textForSpeech").value;
-    SendMessage('TalkingCoach', 'ConvertToSpeech', text);
+    gameInstance.SendMessage('TalkingCoach', 'ConvertToSpeech', text);
 }
 
 function stopTalk() {
-    SendMessage('TalkingCoach', 'StopSpeech');
+    gameInstance.SendMessage('TalkingCoach', 'StopSpeech');
 }
 
 function changeBackground() {
-    SendMessage('TalkingCoach', 'ChangeBackground');
+    gameInstance.SendMessage('TalkingCoach', 'ChangeBackground');
 }
 
 function changeCoach() {
-    SendMessage('TalkingCoach', 'ChangeCoach');
+    gameInstance.SendMessage('TalkingCoach', 'ChangeCoach');
 }
 
 function zoomIn() {
-    SendMessage('TalkingCoach', 'Zoom', -5);
+    gameInstance.SendMessage('TalkingCoach', 'Zoom', -5);
 }
 
 function zoomOut() {
-    SendMessage('TalkingCoach', 'Zoom', 5);
+    gameInstance.SendMessage('TalkingCoach', 'Zoom', 5);
 }
 
 function moveAvatarLeft() {
-    SendMessage('TalkingCoach', 'MoveAvatarHorizontal', 5);
+    gameInstance.SendMessage('TalkingCoach', 'MoveAvatarHorizontal', 5);
 }
 
 function moveAvatarRight() {
-    SendMessage('TalkingCoach', 'MoveAvatarHorizontal', -5);
+    gameInstance.SendMessage('TalkingCoach', 'MoveAvatarHorizontal', -5);
 }
 
 function moveAvatarUp() {
-    SendMessage('TalkingCoach', 'MoveAvatarVertical', 5);
+    gameInstance.SendMessage('TalkingCoach', 'MoveAvatarVertical', 5);
 }
 
 function moveAvatarDown() {
-    SendMessage('TalkingCoach', 'MoveAvatarVertical', -5);
+    gameInstance.SendMessage('TalkingCoach', 'MoveAvatarVertical', -5);
 }
 
 function startTypingTextInput() {
-    SendMessage('TalkingCoach', 'StartTypingTextInput');
+    gameInstance.SendMessage('TalkingCoach', 'StartTypingTextInput');
 }
 
 function stopTypingTextInput() {
-    SendMessage('TalkingCoach', 'StopTypingTextInput');
+    gameInstance.SendMessage('TalkingCoach', 'StopTypingTextInput');
 }
 
 function resetPosition() {
     document.getElementById("speedSlider").value = 50;
     document.getElementById("speedMul").textContent = 100;
     document.getElementById("textForSpeech").value = "";
-    SendMessage('TalkingCoach', 'ResetPosition');
+    gameInstance.SendMessage('TalkingCoach', 'ResetPosition');
 }
 
 function handleListening() {
@@ -69,11 +71,11 @@ function handleListening() {
 }
 
 function listening() {
-    SendMessage('TalkingCoach', 'Listening');
+    gameInstance.SendMessage('TalkingCoach', 'Listening');
 }
 
 function notListening() {
-    SendMessage('TalkingCoach', 'NotListening');
+    gameInstance.SendMessage('TalkingCoach', 'NotListening');
 }
 
 function handleWalking() {
@@ -91,11 +93,11 @@ function handleWalking() {
 }
 
 function walkAway() {
-    SendMessage('TalkingCoach', 'WalkAway');
+    gameInstance.SendMessage('TalkingCoach', 'WalkAway');
 }
 
 function walkBack() {
-    SendMessage('TalkingCoach', 'WalkBack');
+    gameInstance.SendMessage('TalkingCoach', 'WalkBack');
 }
 
 window.onkeydown = function (ev) {
@@ -105,7 +107,7 @@ window.onkeydown = function (ev) {
     }
 };
 
-var togglePlay = function () {
+function togglePlay() {
     var button = document.getElementById('playButton').firstChild;
     var text = document.getElementById("textForSpeech").value.trim();
     if (button.data == "Play" && text != "" && checkForText(text) && isWalkedAway()) {
