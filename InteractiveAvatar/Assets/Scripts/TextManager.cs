@@ -342,31 +342,6 @@ public class TextManager : MonoBehaviour {
     private static void SetTalk(bool talk) {
         ApplicationManager.Instance.SetTalk(talk);
     }
-
-    /// <summary>
-    /// Lets the ApplicationManager play the 'talking' animation.
-    /// </summary>
-    [MonoPInvokeCallback(typeof(StartDelegate))]
-    public static void CallbackStart() {
-        _watch = Stopwatch.StartNew();
-        Debug.Log("callback start");
-        SetTalk(true);
-        ApplicationManager.Instance.PlayAnimation();
-    }
-
-    /// <summary>
-    /// Lets the ApplicationManager play the 'idle' animation.
-    /// </summary>
-    [MonoPInvokeCallback(typeof(EndDelegate))]
-    public static void CallbackEnd() {
-        Debug.Log("callback ended");
-        SetTalk(false);
-		Stop();
-        ApplicationManager.Instance.StopAnimation();
-        _watch.Stop();
-        var wpm = _wordsAmount / (_watch.ElapsedMilliseconds / 60000.0);
-        Debug.Log("wpm: " + (int) wpm + " (" + WordsPerMinute + ")");
-    }
 	
 	/// <summary>
 	/// Callback function for speech synthesis start event. Attached as event
@@ -378,6 +353,9 @@ public class TextManager : MonoBehaviour {
 	/// <param name="elapsedTime">Total time that has elapsed while speaking</param>
 	[MonoPInvokeCallback(typeof(StartDelegate))]
 	public static void callbackStart(int charIndex, float elapsedTime) {
+		_watch = Stopwatch.StartNew();
+		SetTalk(true);
+		ApplicationManager.Instance.PlayAnimation();
 		Debug.Log("callback start at : " + elapsedTime);
 		SpeechAnimationManager.instance.startSpeechAnimation(charIndex);
 	}
@@ -392,6 +370,12 @@ public class TextManager : MonoBehaviour {
 	/// <param name="elapsedTime">Total time that has elapsed while speaking</param>
 	[MonoPInvokeCallback(typeof(EndDelegate))]
 	public static void callbackEnd(int charIndex, float elapsedTime) {
+		SetTalk(false);
+		Stop();
+		ApplicationManager.Instance.StopAnimation();
+		_watch.Stop();
+		var wpm = _wordsAmount / (_watch.ElapsedMilliseconds / 60000.0);
+		Debug.Log("wpm: " + (int) wpm + " (" + WordsPerMinute + ")");
 		Debug.Log("callback end at : " + elapsedTime);
 		// Instruct SpeechAnimationManager to stop speech animation
 		SpeechAnimationManager.instance.stopSpeechAnimation(charIndex);
