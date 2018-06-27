@@ -57,7 +57,6 @@ public class VisemeTimings
         while ((line = reader.ReadLine()) != null)
         {
             var splitLine = line.Split(',');
-            Debug.Log(splitLine[0] + " : " + splitLine[1]);
             visemeDictionary[splitLine[0]] = float.Parse(splitLine[1]);
         }
 

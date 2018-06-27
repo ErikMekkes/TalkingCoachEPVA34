@@ -87,6 +87,30 @@
                 </div>
             </div>
         </div>
+    
+    <div class="html-template">
+        <input type="button" onclick=changeBackground() value="Change Background"/>
+        <input type="button" onclick=changeCoach() value="Change Coach"/>
+        <input type="button" onclick=zoomIn() value="Zoom In"/>
+        <input type="button" onclick=zoomOut() value="Zoom Out"/>
+        <input type="button" onclick=moveAvatarHorizontal() value="Move Horizontal"/>
+        <input type="button" onclick=moveAvatarVertical() value="Move Vertical"/>
+        <br>
+        <input type="button" onclick=startTalk() value="Start Talk">
+        <input type="button" onclick="window.speechSynthesis.cancel()" value="Stop Talk">
+        <input id="textForSpeech" placeholder="Enter Text" type="text" style='font-size:20px' size='50'>
+        <input id="startTalk" name="startTalk" onclick=startTalk() type="button" value="Speak">
+        <br>
+        <input type="button" onclick="pauseSpeech()" value="Pause"/>
+        <input type="button" onclick="resumeSpeech()" value="Resume"/>
+        <br>
+	    <select id="langChoice" onchange=setLanguage()>
+		    <option value="en-US">English</option>
+		    <option value="nl-NL">Nederlands</option>
+	    </select>
+        <input id="hostName" placeholder="Enter Hostname" type="text" style='font-size:20px' size='50', value="http://test.emekkes.nl">
+        <input id="setHostName" name="setHostName" onclick="setHostName()" type="button" value="Set hostname">
+    </div>
         <script type='text/javascript'>
             var slider = document.getElementById("speedSlider");
             var speedMul = document.getElementById("speedMul");

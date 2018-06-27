@@ -22,7 +22,6 @@ namespace Models
 
 		public double getDuration()
 		{
-			Debug.Log("Searching for duration of viseme: " + visemeCode.getName());
 			return SpeechAnimationManager.instance.getVisemeTimingCalculator().getDictionary()[visemeCode.getName()];
 		}
 

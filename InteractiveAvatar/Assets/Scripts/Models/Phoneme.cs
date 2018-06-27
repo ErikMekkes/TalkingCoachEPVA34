@@ -21,7 +21,6 @@ namespace Models
 
 		public Viseme toViseme()
 		{
-			Debug.Log("Searching for code of " + phonemeCode.getName());
 			Viseme.VisemeCode visemeCode = phonemeVisemeMapping[phonemeCode];
 			Viseme result = new Viseme(visemeCode);
 			return result;
@@ -251,8 +250,6 @@ namespace Models
 						_phonemeCodes.Add(phonemeCode.name, phonemeCode);
 					}
 				}
-
-				Debug.Log("Searching for phoneme : " + code);
 				
 				return _phonemeCodes[code];
 			}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Models;
 using UnityEngine;
 
@@ -30,6 +31,9 @@ public class SpeechAnimationManager : MonoBehaviour {
     private int charIndex = 0;
     // amount of visemes in current set to play
     private int visemeAmount = 0;
+    private char[] textChars;
+    private string[] currentWords;
+    private bool shouldPause = false;
 
     // Unity interface field for visemeTimings script.
     [SerializeField] private VisemeTimings visemeTimings;
@@ -125,6 +129,16 @@ public class SpeechAnimationManager : MonoBehaviour {
         currentVisemeName = current.getVisemeCode().getName();
         currentVisemeLength = (float) current.getDuration();
         
+        // if punctuation was encountered before this silence, pause untill next
+        // onboundary event
+        if (shouldPause && currentVisemeName == "Silence") {
+            isSpeaking = false;
+            shouldPause = false;
+            animator.CrossFade("Silence", 0, visemeLayer);
+            currentVisemeInList++;
+            return;
+        }
+
         // play the found viseme animation
         if (animator != null) {
             animator.CrossFade(currentVisemeName, 0, visemeLayer);
@@ -133,6 +147,17 @@ public class SpeechAnimationManager : MonoBehaviour {
         currentVisemeInList++;
     }
     
+    private int nthSpace(int index) {
+        int number = 1;
+        for (int i = 0; i < index; i++) {
+            if (textChars[i] == ' ') {
+                number++;
+            }
+        }
+
+        return number;
+    }
+
     public VisemeTimings getVisemeTimingCalculator()
     {
         return visemeTimings;
@@ -141,6 +166,20 @@ public class SpeechAnimationManager : MonoBehaviour {
     public void setText(string text) {
         // for local access to spoken text.
         currentText = text;
+        textChars = text.ToCharArray();
+        currentWords = text.Split(' ');
+    }
+    
+    public bool isPauseMoment(string word) {
+        if (word.EndsWith(",")
+            || word.EndsWith("?")
+            || word.EndsWith(".")
+            || word.EndsWith(";")
+            || word.EndsWith("!")) {
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -152,13 +191,35 @@ public class SpeechAnimationManager : MonoBehaviour {
     /// <param name="charIndex"></param>
     public void onBoundary(int charIndex) {
         this.charIndex = charIndex;
-        // TODO start animating the word
-				
-        // currentIndex specifies the start of the next word in the whole text
-				
-        // find set of viseme numbers for that word
-				
-        // call playVisemeList() with the set of visemes for a word
+        isSpeaking = true;
+
+        // averaging 1.185 characters per viseme
+        double vNumber = charIndex / 1.185;
+        int visemeNumber = Convert.ToInt32(vNumber);
+        
+        // if current viseme timing is off by more than 2 update the timing
+        if (Math.Abs(currentVisemeInList - visemeNumber) > 2) {
+            currentVisemeInList = visemeNumber;
+        }
+        
+        if (0 == charIndex) {
+            if (isPauseMoment(currentWords[0])) {
+                shouldPause = true;
+                return;
+            }
+        }
+        // look at char before this word
+        int index = charIndex - 1;
+        // if it's a space character (protected from array bounds by onboundary)
+        if (textChars[index] == ' ') {
+            // find out which space it is within the text (= also word number)
+            int spaceNumber = nthSpace(index);
+            // stop animation if last word ended with a punctuation mark.
+            // stops untill the next onboundary event.
+            if (isPauseMoment(currentWords[spaceNumber])) {
+                shouldPause = true;
+            }
+        }
     }
 
     /// <summary>
@@ -235,7 +296,7 @@ public class SpeechAnimationManager : MonoBehaviour {
         // update remaining text using current position
         currentText = currentText.Substring(charIndex);
         // stop speech synthesis
-        TextManager.tmInstance.stopSpeech();
+        TextManager.StopSpeech();
         // stop speech animation
         isSpeaking = false;
     }
@@ -253,7 +314,7 @@ public class SpeechAnimationManager : MonoBehaviour {
             return;
         }
         // restart speech synthesis and animation using remaining text
-        TextManager.tmInstance.startSpeech(currentText);
+        TextManager.Instance.StartSpeech(currentText);
     }
 
     /// <summary>

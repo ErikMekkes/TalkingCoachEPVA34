@@ -47,10 +47,6 @@ if (typeof textToSpeach !== 'undefined') {
             self.msgparameters.onendcalled = false;
 
             if (parameters != null) {
-
-                msg.onend = self.speech_onend;
-                msg.addEventListener('end', self.speech_onend);
-
                 msg.onerror = parameters.onerror || function (e) {
                     console.log('TTS: Error');
                     console.log(e);
@@ -60,6 +56,8 @@ if (typeof textToSpeach !== 'undefined') {
                 msg.onresume = parameters.onresume;
                 msg.onmark = parameters.onmark;
                 msg.onboundary = parameters.onboundary;
+                msg.onstart = parameters.onstart;
+                msg.onend = parameters.onend;
             } else {
                 msg.onend = self.speech_onend;
                 msg.onerror = function (e) {

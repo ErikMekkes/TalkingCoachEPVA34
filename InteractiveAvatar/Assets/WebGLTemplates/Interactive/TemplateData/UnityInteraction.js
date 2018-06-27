@@ -9,6 +9,42 @@ function stopTalk() {
     gameInstance.SendMessage('TalkingCoach', 'StopSpeech');
 }
 
+/**
+ * Call the pauseSpeech function attached to the TalkingCoach Object. This
+ * Should pause the currently ongoing speech synthesis. Has no effect if there
+ * is no ongoing speech synthesis.
+ *
+ * Use window.speechSynthesis.cancel() instead if Web Speech API onboundary
+ * events are not supported by language.
+ */
+function pauseSpeech() {
+    gameInstance.SendMessage('TalkingCoach', 'pauseSpeech');
+}
+
+/**
+ * Call the resumeSpeech function attached to the TalkingCoach Object. This
+ * Should resume the currently paused speech synthesis. Has no effect if the
+ * speech synthesis is not in a paused state.
+ *
+ * Use window.speechSynthesis.resume() instead if Web Speech API onboundary
+ * events are not supported by language.
+ */
+function resumeSpeech() {
+    gameInstance.SendMessage('TalkingCoach', 'resumeSpeech');
+}
+
+function setLanguage() {
+    var language = document.getElementById("langChoice").value;
+    console.log(language);
+    gameInstance.SendMessage('TalkingCoach', 'setLanguage', language);
+}
+
+function setHostName() {
+    var hName = document.getElementById("hostName").value;
+    console.log(hName);
+    gameInstance.SendMessage('TalkingCoach', 'setHostName', hName);
+}
+
 function changeBackground() {
     gameInstance.SendMessage('TalkingCoach', 'ChangeBackground');
 }
@@ -23,6 +59,13 @@ function zoomIn() {
 
 function zoomOut() {
     gameInstance.SendMessage('TalkingCoach', 'Zoom', 5);
+}
+
+function moveAvatarHorizontal(){
+    gameInstance.SendMessage('TalkingCoach', 'moveAvatarHorizontal', 5);
+}
+function moveAvatarVertical(){
+    gameInstance.SendMessage('TalkingCoach', 'moveAvatarVertical', 5);
 }
 
 function moveAvatarLeft() {

@@ -95,6 +95,10 @@ public class ApplicationManager : MonoBehaviour {
 		WebGLInput.captureAllKeyboardInput = true;
 	#endif
        on_load();
+		// load hostname for text to phoneme API calls, only available from web.
+		#if !UNITY_EDITOR && UNITY_WEBGL
+		TextManager.Instance.loadHostName();
+		#endif
    }
 
     /// <summary>
@@ -147,6 +151,8 @@ public class ApplicationManager : MonoBehaviour {
         _newCoach.transform.localRotation = Quaternion.identity;
         _newCoach.transform.localScale = new Vector3(1, 1, 1);
         _startPosition = _newCoach.GetComponent<Transform>().position;
+		// load viseme animations for new coach object
+		SpeechAnimationManager.instance.loadCoach(_newCoach);
     }
 
     /// <summary>
@@ -283,6 +289,8 @@ public class ApplicationManager : MonoBehaviour {
     /// Called on each frame.
     /// </summary>
     private void Update() {
+		// call the frameUpdate function of SpeechAnimationManager
+		SpeechAnimationManager.instance.frameUpdate(Time.deltaTime);
 
         _timeOutTimer += Time.deltaTime;
 

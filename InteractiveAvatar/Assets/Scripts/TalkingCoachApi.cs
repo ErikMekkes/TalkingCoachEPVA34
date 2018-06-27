@@ -48,12 +48,36 @@ public class TalkingCoachApi : MonoBehaviour {
         TextManager.Instance.SetLanguage(language);
     }
 
+	/// <summary>
+	/// Set the hostname for espeak API calls.
+	/// </summary>
+	/// <param name="hName">Hostname with protocal prefix.</param>
+	public void setHostName(string hName) {
+		TextManager.Instance.setHostName(hName);
+	}
+
     /// <summary>
     /// Halts the speech of the coach.
     /// </summary>
     public void StopSpeech() {
         TextManager.StopSpeech();
     }
+
+	/// <summary>
+	/// Pauses the speech, relies on onboundary events for accuracy.
+	/// Use window.speechSynthesis.pause() if onboundary not available.
+	/// </summary>
+	public void pauseSpeech() {
+		SpeechAnimationManager.instance.pauseSpeech();
+	}
+
+	/// <summary>
+	/// Resumes the speech, relies on pauseSpeech, no effect if still speaking.
+	/// Use window.speechSynthesis.resume() if onboundary not available.
+	/// </summary>
+	public void resumeSpeech() {
+		SpeechAnimationManager.instance.resumeSpeech();
+	}
 
     public void ResetPosition() {
         ApplicationManager.Instance.ResetPosition();

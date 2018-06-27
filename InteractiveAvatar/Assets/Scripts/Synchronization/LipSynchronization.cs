@@ -49,7 +49,7 @@ public class LipSynchronization
     public IEnumerator synchronize(string text, string lang) {
         Debug.Log("Trying to make request...");
         // Assumes ESpeak API is available on the same hostname
-        using ( var www = UnityWebRequest.Get(TextManager.tmInstance.getHostName() + API + "phoneme?text=" + text + "&lang=" + lang))
+        using ( var www = UnityWebRequest.Get(TextManager.Instance.getHostName() + API + "phoneme?text=" + text + "&lang=" + lang))
         {
             Debug.Log("request made");
             yield return www.Send();
@@ -68,7 +68,7 @@ public class LipSynchronization
                 var actualVisemeList = Phoneme.toVisemes(actualPhonemeList);
                 Debug.Log("playing list...");
                 SpeechAnimationManager.instance.playVisemeList(actualVisemeList);
-                TextManager.tmInstance.startActualSpeech(text);
+                TextManager.Instance.startActualSpeech(text);
             }
         }
     }
