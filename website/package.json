@@ -1,0 +1,16 @@
+{
+  "name": "interactiveavatar-website",
+  "version": "0.1.0",
+  "description": "A website for the TalkingCoach InteractiveAvatar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd backend && start npm start && cd ../client && start npm start"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "keywords": [],
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  }
+}
