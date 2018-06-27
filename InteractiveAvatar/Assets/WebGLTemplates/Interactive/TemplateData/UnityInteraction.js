@@ -36,7 +36,7 @@ function resumeSpeech() {
 function setLanguage() {
     var language = document.getElementById("langChoice").value;
     console.log(language);
-    gameInstance.SendMessage('TalkingCoach', 'setLanguage', language);
+    gameInstance.SendMessage('TalkingCoach', 'SetLanguage', language);
 }
 
 function setHostName() {
@@ -62,10 +62,10 @@ function zoomOut() {
 }
 
 function moveAvatarHorizontal(){
-    gameInstance.SendMessage('TalkingCoach', 'moveAvatarHorizontal', 5);
+    gameInstance.SendMessage('TalkingCoach', 'MoveAvatarHorizontal', 5);
 }
 function moveAvatarVertical(){
-    gameInstance.SendMessage('TalkingCoach', 'moveAvatarVertical', 5);
+    gameInstance.SendMessage('TalkingCoach', 'MoveAvatarVertical', 5);
 }
 
 function moveAvatarLeft() {
