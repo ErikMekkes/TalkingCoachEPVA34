@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 import UnityApp from "./comp/UnityApp";
-import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import MyAppBar from "./comp/MyAppBar";
 import AppDrawer from "./comp/AppDrawer";
-import {withStyles} from "@material-ui/core/styles/index";
+import withStyles from "@material-ui/core/styles/withStyles";
 import TextInput from "./comp/TextInput";
 import ActionBar from "./comp/ActionBar";
 

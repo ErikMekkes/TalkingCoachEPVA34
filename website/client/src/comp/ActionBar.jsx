@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
+import withStyles from "@material-ui/core/styles/withStyles";
 import {UnityEvent} from "react-unity-webgl";
 import PlayIcon from '@material-ui/icons/PlayArrow'
 import PauseIcon from '@material-ui/icons/Pause'
@@ -42,7 +42,7 @@ class ActionBar extends React.Component {
 
 	sendStopSpeechEvent() {
 		console.log("[ActionBar] Send 'stopSpeech' to Unity");
-		let sendText = new UnityEvent("TalkingCoach", "stopSpeech");
+		let sendText = new UnityEvent("TalkingCoach", "StopSpeech");
 		sendText.emit(this.state.value);
 	}
 

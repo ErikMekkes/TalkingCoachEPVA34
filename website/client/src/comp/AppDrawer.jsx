@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
+import withStyles from "@material-ui/core/styles/withStyles";
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import ListItem from "@material-ui/core/es/ListItem/ListItem";
-import ListItemIcon from "@material-ui/core/es/ListItemIcon/ListItemIcon";
-import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import LanguageIcon from '@material-ui/icons/Language'
 import SelectLanguageModal from "./SelectLanguageModal";
 
