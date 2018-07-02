@@ -38,12 +38,6 @@ class App extends Component {
 		console.log("HandletouchMap")
 	}
 
-	componentDidMount() {
-		fetch('/users')
-				.then(res => res.json())
-				.then(users => this.setState({users}));
-	}
-
 	drawerHandler(open) {
 		this.setState({
 			open: open

@@ -16,10 +16,6 @@ public class LipSynchronization
     private static LipSynchronization instance;
 
     /// <summary>
-    /// The URL of the API to connect to.
-    /// </summary>
-    private const string API = ":3001/api/v1/";
-    /// <summary>
     /// Private constructor to prevent initialization.
     /// </summary>
     private LipSynchronization() {}
@@ -49,7 +45,7 @@ public class LipSynchronization
     public IEnumerator synchronize(string text, string lang) {
         Debug.Log("Trying to make request...");
         // Assumes ESpeak API is available on the same hostname
-        using ( var www = UnityWebRequest.Get(TextManager.Instance.getHostName() + API + "phoneme?text=" + text + "&lang=" + lang))
+        using ( var www = UnityWebRequest.Get(TextManager.Instance.getPhonemeServerHost() + "phoneme?text=" + text + "&lang=" + lang))
         {
             Debug.Log("request made");
             yield return www.Send();

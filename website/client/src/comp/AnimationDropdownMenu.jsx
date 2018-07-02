@@ -52,8 +52,18 @@ class AnimationDropdownMenu extends React.Component {
 			this.textField = document.getElementById('speech-textfield');
 			console.log("Found textfield, registered");
 		}
-		console.log(text);
-		this.textField.value = this.textField.value.trim() + ` {${text}} `
+		var old_text = this.textField.value;
+		var selectionStart = this.textField.selectionStart;
+		var selectionEnd = this.textField.selectionEnd;
+		var new_text = old_text.substring(0, selectionStart) + ` {${text}} ` +
+		old_text.substring(selectionEnd, old_text.length);
+
+		this.textField.value = new_text;
+
+		// the cursor must be placed behind the added tag
+		var new_cursor_index = selectionStart + text.length;
+		this.textField.selectionStart = new_cursor_index;
+		this.textField.selectionEnd = new_cursor_index;
 	};
 
 	render() {

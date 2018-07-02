@@ -39,10 +39,13 @@ function setLanguage() {
     gameInstance.SendMessage('TalkingCoach', 'SetLanguage', language);
 }
 
-function setHostName() {
-    var hName = document.getElementById("hostName").value;
-    console.log(hName);
-    gameInstance.SendMessage('TalkingCoach', 'setHostName', hName);
+/**
+ * Sets the hostname to use as Phoneme Server.
+ * @param hostName the specified hostname for the phoneme server.
+ */
+function setHostName(hostName) {
+    gameInstance.SendMessage('TalkingCoach', 'setPhonemeServerHost', hostName);
+    console.log(hostName);
 }
 
 function changeBackground() {

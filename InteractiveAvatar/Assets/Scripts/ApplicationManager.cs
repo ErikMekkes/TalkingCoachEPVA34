@@ -97,7 +97,7 @@ public class ApplicationManager : MonoBehaviour {
        on_load();
 		// load hostname for text to phoneme API calls, only available from web.
 		#if !UNITY_EDITOR && UNITY_WEBGL
-		TextManager.Instance.loadHostName();
+			TextManager.Instance.loadPhonemeServerHost();
 		#endif
    }
 

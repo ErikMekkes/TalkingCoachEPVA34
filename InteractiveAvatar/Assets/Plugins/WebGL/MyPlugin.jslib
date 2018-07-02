@@ -38,10 +38,8 @@ var MyPlugin = {
     
     // Returns the hostname of the current page as string.
     // Unity requires a UTF8 data type string, so a conversion is required from javascript.
-    getHostNameString: function() {
-        var protocol = location.protocol;
-        var slashes = protocol.concat("//");
-        var host = slashes.concat(window.location.hostname);
+    loadPhonemeServer: function() {
+        var host = textToSpeach.getPhonemeServerHost();
         var bufferSize = lengthBytesUTF8(host) + 1;
         var buffer = _malloc(bufferSize);
         stringToUTF8(host, buffer, bufferSize);

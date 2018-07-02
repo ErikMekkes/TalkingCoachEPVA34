@@ -35,6 +35,8 @@ class MyAppBar extends React.Component {
 
 		this.handleChange = this.handleChange.bind(this);
 		this.sendText = this.sendText.bind(this);
+		this.startTypingTextInput = this.startTypingTextInput.bind(this);
+		this.stopTypingTextInput = this.stopTypingTextInput.bind(this);
 	}
 
 	sendText() {
@@ -45,6 +47,16 @@ class MyAppBar extends React.Component {
 
 	handleChange(event) {
 		this.setState({textValue: event.target.value})
+	}
+	
+	startTypingTextInput() {
+		let startTyping = new UnityEvent("TalkingCoach", "StartTypingTextInput");
+		startTyping.emit(this.state.value);
+	}
+	
+	stopTypingTextInput() {
+		let stopTyping = new UnityEvent("TalkingCoach", "StopTypingTextInput");
+		stopTyping.emit(this.state.value);
 	}
 
 	render() {
@@ -62,6 +74,8 @@ class MyAppBar extends React.Component {
 									fullWidth
 									margin="normal"
 									onChange={this.handleChange}
+									onFocus={this.startTypingTextInput}
+									onBlur={this.stopTypingTextInput}
 							/>
 						</Grid>
 						<Grid item xs={1}>

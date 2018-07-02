@@ -72,21 +72,6 @@ function voice_clicked(button) {
 
 
 function loadVoices() {
-    // First reset all options.
-    document.getElementById('dropdownOptions').innerHTML = "";
-    // Add new options.
-    var max_weight = 0;
-    for (var i = 0; i < systemvoices.length; i++) {
-        var z = document.createElement("INPUT");
-        var name = systemvoices[i].name + " | (" + systemvoices[i].lang + ")";
-        z.setAttribute("type", "button");
-        z.setAttribute("class", "drop-options");
-        z.setAttribute("onclick", "voice_clicked(this)");
-        z.setAttribute("value", name);
-        z.setAttribute("id", i);
-        document.getElementById('dropdownOptions').appendChild(z);
-    }
-    placeDropdown();
 }
 
 function placeDropdown() {
