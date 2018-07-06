@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>%UNITY_WEB_NAME%</title>
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body class="template">
+    <div id="content">
+        <div class="template-wrap clear">
+            <div class="left-list">
+                <div class="slider">
+                    <label>Speed <span id='speedMul'>100</span>%</label>
+                </div>
+                <input type="range" min="1" max="100" value="50" class="slider" id="speedSlider">
+            </div>
+            <div class="inside-list">
+                <div id="dropdown" class="dropdown">
+                    <input type="button" onclick="selectVoice()" id="button-voice" value="Select Language">
+                    <div id="dropdownOptions" class="dropdown-content">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Microsoft Hazel Desktop - English (Great Britain)" id="0">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Microsoft Zira Desktop - English (United States)" id="1">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google Deutsch" id="2">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google US English" id="3">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google UK English Female" id="4">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google UK English Male" id="5">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google español" id="6">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google español de Estados Unidos" id="7"><input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google français" id="8">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google हिन्दी" id="9">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google Bahasa Indonesia" id="10">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google italiano" id="11">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google 日本語" id="12">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google 한국의" id="13">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google Nederlands" id="14">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google polski" id="15">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google português do Brasil" id="16"><input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google русский" id="17">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google&nbsp;普通话（中国大陆）" id="18"><input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google&nbsp;粤語（香港）" id="19">
+                        <input type="button" class="drop-options" onclick="voice_clicked(this)" value="Google 國語（臺灣）" id="20">
+                    </div>
+                </div>
+            </div>
+
+            <input id="textForSpeech" onfocus="startTypingTextInput()" class="input-text" type="text" placeholder="Type something..." onblur="stopTypingTextInput()" />
+            <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
+            <div class="extra-buttons">
+                <input type="button" class="tiny extra-button" onclick="handleWalking()" id="walkbutton" value="Walk away">
+                <input type="button" class="tiny extra-button" onclick="handleListening()" id="listenbutton" value="Listening">
+            </div>
+            <div class="side-list tags_display">
+                <!--        <h3>Usable tags:</h3>-->
+                <ul>
+                    <li> <input type='button' value='GLITCH' class="tiny tag_button" onclick="tag_clicked(this)" /></li>
+                    <li> <input type='button' value='SIT' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='SAD' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='HAPPY' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='DISGUST' class="tiny tag_button" onclick="tag_clicked(this)" /></li>
+                    <li> <input type='button' value='AFRAID' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='SURPRISE' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='ANGRY' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='FOC+' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='FOC-' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='EPI-' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='DAB' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='COUNTING' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='BIG' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='LITTLE' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='LISTENUP' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='DETERMINED' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='ME' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='YOU' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='THIS' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='THAT' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                    <li> <input type='button' value='WISE' class="tiny tag_button" onclick="tag_clicked(this)" /> </li>
+                </ul>
+            </div>
+            <div class="bottom-bar">
+                <div class="left-bar">
+                    <button class="tiny leftmost" onClick="changeBackground() ">Change Scene</button><button class="tiny" onClick="changeCoach()">Change Coach</button>
+                </div>
+                <div id="play_button"><button class="play" onClick="togglePlay()" id="playButton">Play</button></div>
+                <div class="right-bar"><button class="tiny" onClick="resetPosition()">Reset</button><button onClick="stopTalk()" class="tiny rightmost">Stop</button>
+                </div>
+            </div>
+        </div>
+    
+    <div class="html-template">
+        <input type="button" onclick=changeBackground() value="Change Background"/>
+        <input type="button" onclick=changeCoach() value="Change Coach"/>
+        <input type="button" onclick=zoomIn() value="Zoom In"/>
+        <input type="button" onclick=zoomOut() value="Zoom Out"/>
+        <input type="button" onclick=moveAvatarHorizontal() value="Move Horizontal"/>
+        <input type="button" onclick=moveAvatarVertical() value="Move Vertical"/>
+        <br>
+        <input type="button" onclick=startTalk() value="Start Talk">
+        <input type="button" onclick="window.speechSynthesis.cancel()" value="Stop Talk">
+        <input id="textForSpeech" placeholder="Enter Text" type="text" style='font-size:20px' size='50'>
+        <input id="startTalk" name="startTalk" onclick=startTalk() type="button" value="Speak">
+        <br>
+        <input type="button" onclick="pauseSpeech()" value="Pause"/>
+        <input type="button" onclick="resumeSpeech()" value="Resume"/>
+        <br>
+	    <select id="langChoice" onchange=setLanguage()>
+		    <option value="en-US">English</option>
+		    <option value="nl-NL">Nederlands</option>
+	    </select>
+        <input id="hostName" placeholder="Enter Hostname" type="text" style='font-size:20px' size='50', value="http://test.emekkes.nl">
+        <input id="setHostName" name="setHostName" onclick="setHostName()" type="button" value="Set hostname">
+    </div>
+        <script type='text/javascript'>
+            var slider = document.getElementById("speedSlider");
+            var speedMul = document.getElementById("speedMul");
+            slider.addEventListener('change', function() {
+                var value = slider.value;
+                speedMul.textContent = value * 2;
+                SendMessage('TalkingCoach', 'setSpeed', parseFloat(slider.value));
+            });
+        </script>
+				
+				
+				
+        <script src="TemplateData/UnityProgress.js"></script>
+        <script src="TemplateData/textToSpeech.js"></script>
+        <script src="TemplateData/InterfaceInteraction.js"></script>
+        <script src="TemplateData/UnityInteraction.js"></script>
+    </div>
+		
+    <script>
+        var slider = document.getElementById("speedSlider");
+        var speedMul = document.getElementById("speedMul");
+        slider.addEventListener('change', function() {
+            var value = slider.value;
+            speedMul.textContent = value * 2;
+            SendMessage('TalkingCoach', 'SetSpeed', parseFloat(slider.value));
+        });
+    </script>
+    
+    <!-- Filled in during by Unity the build process: -->
+    <div class="template-wrap">
+        <div id="gameContainer" style="height:600px;width:960px"></div>
+    </div>
+    
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+    <script> var gameInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%");</script>
+</body>
+
+</html>
