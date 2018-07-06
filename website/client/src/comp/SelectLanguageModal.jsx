@@ -71,7 +71,7 @@ class SelectLanguageModal extends React.Component {
 
 	changeLanguage() {
 		console.log(`Changing language to ${this.state.language}`);
-		let languageChangeEvent = new UnityEvent('TalkingCoach', 'setLanguage');
+		let languageChangeEvent = new UnityEvent('TalkingCoach', 'SetLanguage');
 		languageChangeEvent.emit(this.state.language)
 	}
 

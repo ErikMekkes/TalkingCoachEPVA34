@@ -48,13 +48,14 @@ public class TalkingCoachApi : MonoBehaviour {
         TextManager.Instance.SetLanguage(language);
     }
 
-	/// <summary>
-	/// Set the hostname for espeak API calls.
-	/// </summary>
-	/// <param name="hName">Hostname with protocal prefix.</param>
-	public void setHostName(string hName) {
-		TextManager.Instance.setHostName(hName);
-	}
+    /// <summary>
+    /// Set the hostname for espeak API calls.
+    /// Set the hostname for espeak phoneme server API calls.
+    /// </summary>
+    /// <param name="hName">Hostname with protocal prefix and port suffix.</param>
+    public void setPhonemeServerHost(string hName) {
+        TextManager.Instance.setPhonemeServerHost(hName);
+    }
 
     /// <summary>
     /// Halts the speech of the coach.

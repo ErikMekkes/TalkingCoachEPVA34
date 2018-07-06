@@ -14,8 +14,8 @@ public class TextManager : MonoBehaviour {
     private string _voice = "Dutch Female";
     private string _language = "en-US";
 	private string[] words;
-	// default ESpeak text to phoneme API host, overwritten with loadHostName().
-	private string hostName = "http://test.emekkes.nl";
+	// default ESpeak text to phoneme API host if unspecified.
+	private string phonemeServerHost = "http://test.emekkes.nl:3001/api/v1/";
 
 	// Declarations for javascript text to speech callback functions
 	public delegate void StartDelegate(int lastword, float elapsedTime);
@@ -63,12 +63,12 @@ public class TextManager : MonoBehaviour {
     [DllImport("__Internal")]
     private static extern string getSystemVoices();
 		
-	/// <summary>
-	/// Returns the hostname of the webpage unity is currently loaded on.
-	/// </summary>
-	/// <returns>Hostname string with protocol prefix</returns>
-	[DllImport("__Internal")]
-	private static extern string getHostNameString();
+    /// <summary>
+    /// Returns the hostname of the webpage unity is currently loaded on.
+    /// </summary>
+    /// <returns>Hostname string with protocol prefix</returns>
+    [DllImport("__Internal")]
+    private static extern string loadPhonemeServer();
 #endif
 
     private static TextManager _instance;
@@ -110,28 +110,29 @@ public class TextManager : MonoBehaviour {
         Debug.Log(getSystemVoices());
     }
 
-	/// <summary>
-	/// Updates local hostname variable with the hostname used of the current
-	/// webpage Unity is loaded in. Only useable from within the web page.
-	/// </summary>
-	public void loadHostName() {
-		hostName = getHostNameString();
-	}
+    /// <summary>
+    /// Updates local hostname variable with the hostname used of the current
+    /// webpage Unity is loaded in. Only useable from within the web page.
+    /// </summary>
+    public void loadPhonemeServerHost() {
+        phonemeServerHost = loadPhonemeServer();
+    }
 
 	/// <summary>
 	/// Sets the hostname variable to the specified hostname.
 	/// </summary>
-	public void setHostName(string hName) {
-		hostName = hName;
+	public void setPhonemeServerHost(string hName) {
+		phonemeServerHost = hName;
 	}
 
 	/// <summary>
 	/// Returns the current hostname string. Make sure it is updated with
-	/// loadHostName, defaults to http://test.emekkes.nl otherwise
+	/// loadPhonemeServerHost or setPhonemeServerHost, defaults to
+	/// "http://test.emekkes.nl:3001/api/v1/" otherwise
 	/// </summary>
 	/// <returns>Hostname string with protocol prefix</returns>
-	public string getHostName() {
-		return hostName;
+	public string getPhonemeServerHost() {
+		return phonemeServerHost;
 	}
 
     /// <summary>

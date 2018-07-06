@@ -40,7 +40,6 @@ if (typeof textToSpeach !== 'undefined') {
             msg.volume = 1;
             msg.rate = 1;
             msg.pitch = 1;
-            msg.voice = window.speechSynthesis.getVoices()[self.speakVoiceIndex];
 
             msg.onstart = self.speech_onstart;
 
@@ -67,6 +66,26 @@ if (typeof textToSpeach !== 'undefined') {
             }
 
             window.speechSynthesis.speak(msg);
+        };        
+				
+        /**
+         * Specifies the host to use as Phoneme Server.
+         * 
+         * When Unity is ready this function is automatically called once to load the specified hostName
+         *
+         * The specified hostname must use the standard location format: protocol://hostname:port/route
+         * Ensure that the specified server is active, the phoneme server is required for speech.
+         * @returns {string} the specified hostname for the phoneme server.
+         */
+        self.getPhonemeServerHost = function() {
+            // current default = http://current_hostname:3001/api/v1/
+            var hostName = "http://" + location.hostName + ":3001/api/v1/";
+
+            console.log("Phoneme Server host set to : " + hostName);
+            return hostName;
+            
+            // Other location attributes are available to create a default hostName string,
+            // see https://www.w3schools.com/jsref/obj_location.asp for available options.
         };
 
         self.cancel = function () {
