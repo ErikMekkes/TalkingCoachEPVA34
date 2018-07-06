@@ -38,7 +38,7 @@ if (typeof textToSpeach !== 'undefined') {
             msg.lang = self.msgparameters.language;
             msg.text = text;
             msg.volume = 1;
-            msg.rate = 1 * (document.getElementById("speedSlider").value / 50);
+            msg.rate = 1;
             msg.pitch = 1;
             msg.voice = window.speechSynthesis.getVoices()[self.speakVoiceIndex];
 

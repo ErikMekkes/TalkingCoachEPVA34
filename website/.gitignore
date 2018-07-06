@@ -1,0 +1,12 @@
+# Ignore WebStorm files
+.idea/
+
+# dependencies
+*/node_modules
+/node_modules
+
+# production
+/build
+
+# code coverage
+/backend/.nyc_output/
