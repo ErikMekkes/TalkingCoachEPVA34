@@ -2,26 +2,20 @@
 This repository contains the combined work of EPVA3 and EPVA4's context projects for the TUDelft. 
 The product is an extension of the original TalkingCoach project (https://github.com/ruuddejong/TalkingCoach).
 
+## EPVA3 
 EPVA3 has added body animation based on emotion.
-EPVA4 has added mouth animation based on speech.
 
-As this repository is a merge effort / mirror of two separate repositories from GitLab the full git history is not available here.
-
-*Live demonstration pages*
-A live version of this work can be viewed at :
-http://mmi.tudelft.nl - see /website/client for the source code of this web client
-
-A more basic version with demo functions and https support can be viewed at :
-https://test.emekkes.nl/EPVA34 - see /website/client/public/unity for the source code of this webpage
-
-*EPVA3 members:*
+### EPVA3 members:
 - Mark Acda
 - Pieter Tolsma
 - Thomas Boss
 - Jeroen Nelen
 - Toon de Boer
 
-*EPVA4 members:*
+## EPVA4
+EPVA4 has added mouth animation based on speech.
+
+### EPVA4 members:
 - Emma Sala
 - Erik Mekkes
 - Joshua Slik
@@ -29,7 +23,23 @@ https://test.emekkes.nl/EPVA34 - see /website/client/public/unity for the source
 - Muhammed Imran Özyar
 
 
-*Large File Support*
+As this repository is a merge effort / mirror of two separate repositories from GitLab the full git history is not available here.
+
+## Live demonstration pages
+A live version of this work can be viewed at :
+http://mmi.tudelft.nl - see /website/client for the source code of this web client
+
+A more basic version with demo functions and https support can be viewed at :
+https://test.emekkes.nl/EPVA34 - see /website/client/public/unity for the source code of this webpage
+
+
+
+## Server Setup
+A zip file with all the required components to set up a server for this product has been included as talkingcoach_server_setup.zip.
+
+It includes a readme that describes the general structure / installation of the server, and a full install guide with included isntallation script for linux.
+
+## Large File Support
 This repository makes use of git Large File Storage due to GitHub's 100MB file size limit.
 
 currently the only file tracked by git lfs is InteractiveAvatar/Assets/Animations/walk_into_screen.anim at 134MB
